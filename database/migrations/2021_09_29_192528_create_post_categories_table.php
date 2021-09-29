@@ -20,6 +20,7 @@ class CreatePostCategoriesTable extends Migration
             $table->string('description');
             $table->string('keywords');
             $table->foreignId('parent_id')->nullable()->constrained('categories');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

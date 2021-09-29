@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->longText('body');
             $table->dateTime('published_at')->nullable();
             $table->foreignId('author_id')->nullable()->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
