@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Blog\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'admin'], function () {
+    Route::view('dashboard', 'welcome')->name('dashboard');
+
+    Route::group(['prefix' => 'blog'], function () {
+        Route::resource('categories', CategoryController::class);
+    });
+});

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostCategoriesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreatePostCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('description');
             $table->string('keywords');
-            $table->foreignId('parent_id')->nullable()->constrained('category');
+            $table->integer('parent_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

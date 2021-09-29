@@ -26,7 +26,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:190', ],
-            'slug' => ['required', 'string', Rule::unique('categories', 'slug')],
+//            'slug' => ['nullable', 'string', Rule::unique('category', 'slug')],
             'description' => ['nullable', 'string'],
             'keywords' => ['nullable', 'string']
         ];

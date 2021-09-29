@@ -14,7 +14,7 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -26,7 +26,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:190', ],
-            'slug' => ['required', 'string', Rule::unique('categories', 'slug')->ignore($this->id)],
+//            'slug' => ['required', 'string', Rule::unique('category', 'slug')->ignore($this->id)],
             'description' => ['nullable', 'string'],
             'keywords' => ['nullable', 'string']
         ];

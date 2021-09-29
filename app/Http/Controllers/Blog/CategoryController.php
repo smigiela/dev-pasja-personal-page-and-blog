@@ -8,6 +8,7 @@ use App\Http\Requests\Blog\UpdateCategoryRequest;
 use App\Models\Blog\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -20,7 +21,7 @@ class CategoryController extends Controller
     {
         $categories = Category::with('subcategories')->get();
 
-        return view('blog.category.index', compact('categories'));
+        return view('admin.blog.category.index', compact('categories'));
     }
 
     /**
@@ -30,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('blog.category.crreate');
+        return view('admin.blog.category.create');
     }
 
     /**
@@ -41,9 +42,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        Category::create($request->validated());
+        Category::create($request->validated() + ['slug' => Str::slug($request->name)]);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('categories.index')->setStatusCode(201);
     }
 
     /**
@@ -54,7 +55,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('blog.category.show', compact('category'));
+        return view('admin.blog.category.show', compact('category'));
     }
 
     /**
@@ -65,7 +66,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('blog.category.edit', compact('category'));
+        return view('admin.blog.category.edit', compact('category'));
     }
 
     /**
@@ -79,7 +80,7 @@ class CategoryController extends Controller
     {
         $category->update($request->validated());
 
-        return redirect()->route('posts.index');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -92,6 +93,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('categories.index');
     }
 }
