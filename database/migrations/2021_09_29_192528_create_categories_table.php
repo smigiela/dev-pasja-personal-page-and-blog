@@ -19,7 +19,7 @@ class CreatePostCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->string('description');
             $table->string('keywords');
-            $table->foreignId('parent_id')->nullable()->constrained('categories');
+            $table->foreignId('parent_id')->nullable()->constrained('category');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreatePostCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_categories');
+        Schema::dropIfExists('categories');
     }
 }
