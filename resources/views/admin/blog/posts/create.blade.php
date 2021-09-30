@@ -1,7 +1,8 @@
 <x-app-layout>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Dodaj nową kategorię
+            Dodaj nowy post
         </h2>
     </x-slot>
 
@@ -10,35 +11,35 @@
             <div class="sm:px-6 lg:px-8">
                 <div class="flex gap-4 overflow-hidden sm:rounded-lg">
                     <div class="sm:w-3/4 md:w-3/4 lg:w-3/4 2xl:w-3/4 w-full bg-white">
-                        <form action="{{route('categories.store')}}" method="POST">
+                        <form action="{{route('posts.store')}}" method="POST">
                             @method('POST')
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="grid grid-cols-2 gap-6">
                                         <div class="col-span-2 sm:col-span-2">
-                                            <x-jet-label for="name" class="block text-sm font-medium text-gray-700">
+                                            <x-jet-label for="title" class="block text-sm font-medium text-gray-700">
                                                 Nazwa
                                             </x-jet-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <x-jet-input type="text" name="name" id="name"
-                                                             value="{{old('name')}}"
+                                                <x-jet-input type="text" name="title" id="title"
+                                                             value="{{old('title')}}"
                                                              class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
                                                            block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                                 </x-jet-input>
                                             </div>
                                         </div>
                                         <div class="col-span-2 sm:col-span-2">
-                                            <x-jet-label for="parent_id" class="block text-sm font-medium text-gray-700">
-                                                Kategoria nadrzędna
+                                            <x-jet-label for="category_id" class="block text-sm font-medium text-gray-700">
+                                                Kategoria
                                             </x-jet-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <select name="parent_id" id="parent_id" class="focus:ring-indigo-500
+                                                <select name="category_id" id="category_id" class="focus:ring-indigo-500
                                                     focus:border-indigo-500 flex-1 block w-full rounded-none
                                                     rounded-r-md sm:text-sm border-gray-300">
-                                                    <option selected disabled>Wybierz kategorię nadrzędną</option>
-                                                    @forelse($parentCategories as $parent)
-                                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                    <option selected disabled>Wybierz kategorię</option>
+                                                    @forelse($categories as $category)
+                                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                                     @empty
                                                         Nie ma nic do pokazania
                                                     @endforelse
@@ -70,6 +71,25 @@
                                                 </x-jet-input>
                                             </div>
                                         </div>
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <div x-data="app()" x-init="initFlatpickr">
+                                                <input name="published_at" id="published_at" value="{{old('published_at')}}" placeholder="Data publikacji" x-ref="picker" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                                block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" />
+                                            </div>
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <x-jet-label for="body" class="block text-sm font-medium text-gray-700">
+                                                Treść
+                                            </x-jet-label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <textarea type="text" name="body" id="published_at"
+                                                             class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                                                 block w-full rounded-none rounded-r-md
+                                                                 sm:text-sm border-gray-300">
+                                                    {{old('body')}}
+                                                </textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <x-jet-validation-errors></x-jet-validation-errors>
                                 </div>
@@ -87,4 +107,27 @@
         </div>
     </div>
     </div>
+    @section('scripts')
+        <script>
+            function app() {
+                return {
+                    initFlatpickr() {
+                        const fp = flatpickr(this.$refs.picker, {
+                            locale: "pl",
+                            minDate: "2020-01",
+                            maxDate: "2022-01",
+                            enableTime: true,
+                            time_24hr: true,
+                            minTime: "00:00",
+                            maxTime: "23:59",
+                            // dateFormat: "d.m.Y H:i",
+                            dateFormat: "Y-m-d H:i:s",
+                            disableMobile: "true",
+                            static: false,
+                        });
+                    }
+                }
+            }
+        </script>
+    @endsection
 </x-app-layout>
