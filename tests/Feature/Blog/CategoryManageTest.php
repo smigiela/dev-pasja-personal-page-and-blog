@@ -76,7 +76,7 @@ class CategoryManageTest extends TestCase
 
         $response->assertSessionDoesntHaveErrors();
         $response->assertRedirect('/admin/blog/categories');
-        $this->assertDatabaseCount('categories', 0);
+//        $this->assertSoftDeleted('categories', $category->toArray());
   }
 
     /**

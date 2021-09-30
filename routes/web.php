@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Blog\CategoryController;
+use App\Http\Controllers\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'admin']
 
     Route::group(['prefix' => 'blog'], function () {
         Route::resource('categories', CategoryController::class);
+        Route::resource('posts', PostController::class);
     });
 });
