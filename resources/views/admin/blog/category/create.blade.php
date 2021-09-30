@@ -28,7 +28,23 @@
                                                 </x-jet-input>
                                             </div>
                                         </div>
-
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <x-jet-label for="parent_id" class="block text-sm font-medium text-gray-700">
+                                                Kategoria nadrzędna
+                                            </x-jet-label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <select name="parent_id" id="parent_id" class="focus:ring-indigo-500
+                                                    focus:border-indigo-500 flex-1 block w-full rounded-none
+                                                    rounded-r-md sm:text-sm border-gray-300">
+                                                    <option selected disabled>Wybierz kategorię nadrzędną</option>
+                                                    @forelse($parentCategories as $parent)
+                                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                                    @empty
+                                                        Nie ma nic do pokazania
+                                                    @endforelse
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-span-2 sm:col-span-2">
                                             <x-jet-label for="description"
                                                          class="block text-sm font-medium text-gray-700">

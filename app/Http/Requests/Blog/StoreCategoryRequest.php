@@ -28,7 +28,8 @@ class StoreCategoryRequest extends FormRequest
             'name' => ['required', 'string', 'max:190', ],
 //            'slug' => ['nullable', 'string', Rule::unique('category', 'slug')],
             'description' => ['nullable', 'string'],
-            'keywords' => ['nullable', 'string']
+            'keywords' => ['nullable', 'string'],
+            'parent_id' => ['nullable', 'integer']
         ];
     }
 }

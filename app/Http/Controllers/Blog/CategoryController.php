@@ -31,7 +31,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.blog.category.create');
+        $parentCategories = Category::where('parent_id', null)->get();
+
+        return view('admin.blog.category.create', compact('parentCategories'));
     }
 
     /**
@@ -55,6 +57,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        $category->load('parent')->loadCount('subcategories');
         return view('admin.blog.category.show', compact('category'));
     }
 
@@ -66,7 +69,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.blog.category.edit', compact('category'));
+        $parentCategories = Category::where('parent_id', null)->get();
+
+        return view('admin.blog.category.edit', compact('category', 'parentCategories'));
     }
 
     /**
