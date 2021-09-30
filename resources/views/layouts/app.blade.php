@@ -12,11 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @yield('styles')
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -35,6 +37,7 @@
 
             <!-- Page Content -->
             <main>
+                @include('partials.messages')
                 {{ $slot }}
             </main>
         </div>
@@ -42,5 +45,7 @@
         @stack('modals')
 
         @livewireScripts
+        @yield('scripts')
+
     </body>
 </html>
