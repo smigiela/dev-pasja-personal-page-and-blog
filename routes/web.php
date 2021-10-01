@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Blog\CategoryController;
-use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Admin\Blog\CategoryController;
+use App\Http\Controllers\Admin\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
