@@ -1,22 +1,19 @@
 <?php
 
-use App\Http\Controllers\Blog\CategoryController;
-use App\Http\Controllers\Blog\PostController;
+use App\Http\Controllers\Admin\Blog\CategoryController;
+use App\Http\Controllers\Admin\Blog\PostController;
+use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
+})->name('home');
+
+Route::group(['prefix' => 'blog'], function() {
+   Route::get('', [BlogController::class, 'index'])->name('blog.index');
+   Route::get('/kategoria/{category}', [BlogController::class, 'showCategory'])->name('blog.category');
+   Route::get('/{post}', [BlogController::class, 'showPost'])->name('blog.post');
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'admin'], function () {
