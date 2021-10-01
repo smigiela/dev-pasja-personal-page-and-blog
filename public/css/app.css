@@ -1102,6 +1102,9 @@ select {
 .prose > :last-child {
 	margin-bottom: 0;
 }
+.visible {
+	visibility: visible;
+}
 .static {
 	position: static;
 }
@@ -1144,6 +1147,10 @@ select {
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+.my-auto {
+	margin-top: auto;
+	margin-bottom: auto;
 }
 .my-20 {
 	margin-top: 5rem;
@@ -1227,8 +1234,29 @@ select {
 .mr-8 {
 	margin-right: 2rem;
 }
+.mb-20 {
+	margin-bottom: 5rem;
+}
 .mb-8 {
 	margin-bottom: 2rem;
+}
+.mb-5 {
+	margin-bottom: 1.25rem;
+}
+.mb-0 {
+	margin-bottom: 0px;
+}
+.mt-20 {
+	margin-top: 5rem;
+}
+.mb-10 {
+	margin-bottom: 2.5rem;
+}
+.mr-auto {
+	margin-right: auto;
+}
+.-mt-1 {
+	margin-top: -0.25rem;
 }
 .-mt-16 {
 	margin-top: -4rem;
@@ -1749,6 +1777,9 @@ select {
 .font-mono {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.font-serif {
+	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
 .text-sm {
 	font-size: 0.875rem;
 	line-height: 1.25rem;
@@ -1782,6 +1813,9 @@ select {
 }
 .font-semibold {
 	font-weight: 600;
+}
+.font-normal {
+	font-weight: 400;
 }
 .uppercase {
 	text-transform: uppercase;
@@ -1892,6 +1926,9 @@ select {
 }
 .underline {
 	text-decoration: underline;
+}
+.no-underline {
+	text-decoration: none;
 }
 .antialiased {
 	-webkit-font-smoothing: antialiased;
@@ -2580,6 +2617,12 @@ span.flatpickr-weekday{cursor:default;font-size:90%;background:transparent;color
 	.lg\:px-8 {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+}
+@media (min-width: 1280px) {
+
+	.xl\:w-1\/2 {
+		width: 50%;
 	}
 }
 @media (min-width: 1536px) {
