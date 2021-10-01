@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Blog\Category;
+use App\Models\Blog\Post;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -46,6 +48,23 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+        });
+
+        // bindujemy kategorie i post po ID i SLUGu
+        Route::bind('category', function ($value) {
+            return Category::where('slug', $value)->orWhere(function ($query) use ($value) {
+                if (is_numeric($value)) {
+                    $query->where('id', $value);
+            }
+            })->firstOrFail();
+        });
+
+        Route::bind('post', function ($value) {
+            return Post::where('slug', $value)->orWhere(function ($query) use ($value) {
+                if (is_numeric($value)) {
+                    $query->where('id', $value);
+            }
+            })->firstOrFail();
         });
     }
 
