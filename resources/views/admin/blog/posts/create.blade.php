@@ -78,17 +78,10 @@
                                             </div>
                                         </div>
                                         <div class="col-span-2 sm:col-span-2">
-                                            <x-jet-label for="body" class="block text-sm font-medium text-gray-700">
+                                            <label for="body" class="block text-sm font-medium text-gray-700">
                                                 Treść
-                                            </x-jet-label>
-                                            <div class="mt-1 flex rounded-md shadow-sm">
-                                                <textarea type="text" name="body" id="published_at"
-                                                             class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                                                 block w-full rounded-none rounded-r-md
-                                                                 sm:text-sm border-gray-300">
-                                                    {{old('body')}}
-                                                </textarea>
-                                            </div>
+                                            </label>
+                                            <textarea name="body" id="ckeditor">{{old('body')}}</textarea>
                                         </div>
                                     </div>
                                     <x-jet-validation-errors></x-jet-validation-errors>
@@ -108,6 +101,7 @@
     </div>
     </div>
     @section('scripts')
+        @include('admin.blog.ckeditor')
         <script>
             function app() {
                 return {
@@ -120,8 +114,7 @@
                             time_24hr: true,
                             minTime: "00:00",
                             maxTime: "23:59",
-                            // dateFormat: "d.m.Y H:i",
-                            dateFormat: "Y-m-d H:i:s",
+                            dateFormat: "Y-m-d H:i:ss",
                             disableMobile: "true",
                             static: false,
                         });
