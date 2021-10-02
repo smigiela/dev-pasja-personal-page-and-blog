@@ -33,17 +33,17 @@
 
             <div class="social-box">
                 <ul class="navbar-nav text-center">
-                    <li class="nav-item {{ (request()->routeIs('home')) ? 'active' : '' }}">
+                    <li class="nav-item">
                         <a class="social-link" href="https://www.facebook.com/devpasja" target="_blank">
                             <i class="ion-social-facebook"></i>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->routeIs('home')) ? 'active' : '' }}">
+                    <li class="nav-item">
                         <a class="social-link" href="https://github.com/smigiela" target="_blank">
                             <i class="ion-social-github"></i>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->routeIs('home')) ? 'active' : '' }}">
+                    <li class="nav-item">
                         <a class="social-link" href="https://instagram.com/smigiela_daniel" target="_blank">
                             <i class="ion-social-instagram"></i>
                         </a>

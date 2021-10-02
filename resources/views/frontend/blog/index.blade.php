@@ -11,7 +11,7 @@
             <a href="{{route('blog.post', $post)}}">{{ $post->title }}</a>
         </div>
         <div class="author">
-            <img src="images/uifaces/11.jpg" class="avatar" alt="author" />
+            <img src="{{ auth()->user()->profile_photo_url }}" class="avatar" alt="author" />
             {{ $post->author->name }}, {{ \Carbon\Carbon::make($post->published_at)->format('d-m-Y H:m') }}
             | Opublikowano w kategorii: <div class="badge badge-info">{{ $post->category->name }}</div>
         </div>

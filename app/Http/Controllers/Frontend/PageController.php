@@ -11,4 +11,9 @@ class PageController extends Controller
     {
         //TODO: dopisać
     }
+
+    public function contact()
+    {
+        //TODO: dopisać
+    }
 }

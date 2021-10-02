@@ -3,9 +3,6 @@
         <h4 class="title d-md-none float-left">Blog</h4>
 
         <div class="categories dropdown">
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="index.html">Business</a>
-            </div>
             @foreach($categories as $category)
                 <a href="{{route('blog.category', $category->slug)}}">{{$category->name}}</a>
             @endforeach
