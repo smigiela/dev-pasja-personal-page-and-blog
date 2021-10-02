@@ -2,6 +2,15 @@
 @section('posts')
     <div class="blog-post">
         <h3 class="blog-post-title">{{$post->title}}</h3>
+        <div class="col-sm-12" style="padding: 0; !important;">
+            <img src=
+                    @if($post->getFirstMedia('post_cover_image'))
+                        "{{$post->getFirstMediaUrl('post_cover_image') }}"
+                    @else
+                         "https://via.placeholder.com/200x120"
+                    @endif
+                 style="width: 100%;">
+        </div>
         <div class="blog-post-header">
             <div class="blog-post-author">
                 <img src="{{ auth()->user()->profile_photo_url }}">
@@ -11,16 +20,12 @@
                 <span>{{ \Carbon\Carbon::make($post->published_at)->format('d-m-Y H:m') }}</span>
             </div>
             <div class="blog-post-share">
-                Share this post:
-                <a href="#">
-                    <i class="ion-social-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="ion-social-facebook"></i>
-                </a>
-                <a href="#">
-                    <i class="ion-social-buffer"></i>
-                </a>
+                <div class="fb-share-button" data-href="{{url()->current()}}"
+                     data-layout="button" data-size="large">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8000%2Fblog%2F60&amp;src=sdkpreparse"
+                       class="fb-xfbml-parse-ignore">Udostępnij
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -29,22 +34,22 @@
             <div>{!! $post->body !!}</div>
             <div class="blog-post-gallery">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <img src="images/unsplash/photo-1470274038469-958113db2384.jpg" class="zoomerang"
-                             style="width: 100%;" data-trigger="zoomerang">
-                    </div>
-                    <div class="col-sm-6">
-                        <img src="images/unsplash/photo-1466854076813-4aa9ac0fc347.jpg" class="zoomerang"
-                             style="width: 100%;" data-trigger="zoomerang">
-                        <img src="images/unsplash/photo-1467659226669-a1360d97be2d.jpg" class="zoomerang"
-                             style="width: 100%; margin-top:45px;" data-trigger="zoomerang">
-                    </div>
+{{--                    <div class="col-sm-6">--}}
+{{--                        <img src="{{$post->getFirstMediaUrl('post_cover_image')}}" class="zoomerang"--}}
+{{--                             style="width: 100%;" data-trigger="zoomerang">--}}
+{{--                    </div>--}}
+{{--                    <div class="col-sm-6">--}}
+{{--                        <img src="images/unsplash/photo-1466854076813-4aa9ac0fc347.jpg" class="zoomerang"--}}
+{{--                             style="width: 100%;" data-trigger="zoomerang">--}}
+{{--                        <img src="images/unsplash/photo-1467659226669-a1360d97be2d.jpg" class="zoomerang"--}}
+{{--                             style="width: 100%; margin-top:45px;" data-trigger="zoomerang">--}}
+{{--                    </div>--}}
                 </div>
             </div>
-            <div class="blog-post-video">
-                <iframe src="https://player.vimeo.com/video/24456787" height="440" frameborder="0" webkitallowfullscreen
-                        mozallowfullscreen allowfullscreen></iframe>
-            </div>
+{{--            <div class="blog-post-video">--}}
+{{--                <iframe src="https://player.vimeo.com/video/24456787" height="440" frameborder="0" webkitallowfullscreen--}}
+{{--                        mozallowfullscreen allowfullscreen></iframe>--}}
+{{--            </div>--}}
         </div>
     </div>
 @endsection

@@ -10,7 +10,7 @@
             <div class="sm:px-6 lg:px-8">
                 <div class="flex gap-4 overflow-hidden sm:rounded-lg">
                     <div class="sm:w-3/4 md:w-3/4 lg:w-3/4 2xl:w-3/4 w-full bg-white">
-                        <form action="{{route('posts.update', $post)}}" method="POST">
+                        <form action="{{route('posts.update', $post)}}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -76,17 +76,17 @@
                                             </div>
                                         </div>
                                         <div class="col-span-2 sm:col-span-2">
-                                            <x-jet-label for="body" class="block text-sm font-medium text-gray-700">
+                                            <label for="body" class="block text-sm font-medium text-gray-700">
                                                 Treść
-                                            </x-jet-label>
-                                            <div class="mt-1 flex rounded-md shadow-sm">
-                                                <textarea type="text" name="body" id="published_at"
-                                                          class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
-                                                                 block w-full rounded-none rounded-r-md
-                                                                 sm:text-sm border-gray-300">
-                                                    {{$post->body, old('body')}}
-                                                </textarea>
-                                            </div>
+                                            </label>
+                                            <textarea name="body" id="ckeditor">{{$post->body, old('body')}}</textarea>
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <label for="image" class="block text-sm font-medium text-gray-700">
+                                                Zdjęcie wyróżniające
+                                            </label>
+                                            <input type="file" name="image" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                                block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         </div>
                                     </div>
                                     <x-jet-validation-errors></x-jet-validation-errors>
@@ -106,6 +106,7 @@
     </div>
     </div>
     @section('scripts')
+        @include('admin.blog.ckeditor')
         <script>
             function app() {
                 return {
@@ -118,7 +119,6 @@
                             time_24hr: true,
                             minTime: "00:00",
                             maxTime: "23:59",
-                            // dateFormat: "d.m.Y H:i",
                             dateFormat: "Y-m-d H:i:s",
                             disableMobile: "true",
                             static: false,

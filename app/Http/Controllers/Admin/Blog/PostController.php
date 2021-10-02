@@ -42,7 +42,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create($request->all() + ['slug' => Str::slug($request->title)]);
+        $post = Post::create($request->all() + ['slug' => Str::slug($request->title)]);
+
+        if ($request->hasFile('image')) {
+            $post->addMediaFromRequest('image')->toMediaCollection('post_cover_image');
+        }
 
         return redirect()->route('posts.index')->setStatusCode(201);
     }
@@ -81,6 +85,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $post->update($request->all());
+
+        if ($request->hasFile('image')) {
+            $post->addMediaFromRequest('image')->toMediaCollection('post_cover_image');
+        }
 
         return redirect()->route('posts.index');
     }

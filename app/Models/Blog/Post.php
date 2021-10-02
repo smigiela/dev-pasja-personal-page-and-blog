@@ -21,10 +21,11 @@ class Post extends Model implements HasMedia
         return 'slug';
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaCollections(): void
     {
-        $this->addMediaConversion('thumb')
-            ->width(600);
+        $this
+            ->addMediaCollection('post_cover_image')
+            ->singleFile();
     }
 
     public function category()

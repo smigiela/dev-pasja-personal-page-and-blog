@@ -4,14 +4,18 @@
 @foreach($posts as $post)
     <div class="post">
         <a href="blog-post.html" class="pic">
-            <div style="background-image:url(https://images.unsplash.com/photo-1633114078244-353b1ce7b096?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1471&q=80);"></div>
+            @if($post->getFirstMedia('post_cover_image'))
+                <div style="background-image:url({{$post->getFirstMediaUrl('post_cover_image') }});"></div>
+            @else
+                <div style="background-image:url(https://via.placeholder.com/200x120});"></div>
+            @endif
         </a>
 
         <div class="title">
             <a href="{{route('blog.post', $post)}}">{{ $post->title }}</a>
         </div>
         <div class="author">
-            <img src="{{ auth()->user()->profile_photo_url }}" class="avatar" alt="author" />
+            <img src="{{ $post->author->profile_photo_url }}" class="avatar" alt="author" />
             {{ $post->author->name }}, {{ \Carbon\Carbon::make($post->published_at)->format('d-m-Y H:m') }}
             | Opublikowano w kategorii: <div class="badge badge-info">{{ $post->category->name }}</div>
         </div>

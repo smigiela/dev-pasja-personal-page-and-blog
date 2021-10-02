@@ -11,6 +11,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Facebook meta tags -->
+    <meta property="fb:app_id"        content="{{asset('public/dev-pasja-icon_512.png')}}" />
+    <meta property="og:url"           content="http://localhost:8000" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="{{ config('app.name') }}" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="{{asset('public/dev-pasja-icon_512.png')}}" />
+
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
     <link rel="shortcut icon" href="{{asset('public/dev-pasja-icon_512.png')}}">
 

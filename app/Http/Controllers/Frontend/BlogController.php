@@ -20,7 +20,7 @@ class BlogController extends Controller
                     }])
                 ->orderBy('published_at')
                 ->where('published_at', '>=', now())
-                ->paginate(1);
+                ->paginate(6);
 
         return view('frontend.blog.index', compact( 'posts'));
     }

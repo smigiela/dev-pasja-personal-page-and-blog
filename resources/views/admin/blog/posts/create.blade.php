@@ -11,7 +11,7 @@
             <div class="sm:px-6 lg:px-8">
                 <div class="flex gap-4 overflow-hidden sm:rounded-lg">
                     <div class="sm:w-3/4 md:w-3/4 lg:w-3/4 2xl:w-3/4 w-full bg-white">
-                        <form action="{{route('posts.store')}}" method="POST">
+                        <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                             @method('POST')
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -82,6 +82,13 @@
                                                 Treść
                                             </label>
                                             <textarea name="body" id="ckeditor">{{old('body')}}</textarea>
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <label for="image" class="block text-sm font-medium text-gray-700">
+                                                Zdjęcie wyróżniające
+                                            </label>
+                                            <input type="file" name="image" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                                block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         </div>
                                     </div>
                                     <x-jet-validation-errors></x-jet-validation-errors>
