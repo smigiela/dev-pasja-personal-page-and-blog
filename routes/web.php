@@ -7,9 +7,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.home');
-})->name('home');
+Route::get('', [PageController::class, 'home'])->name('home');
 
 Route::get('o-mnie', [PageController::class, 'aboutMe'])->name('page.aboutme');
 Route::get('kontakt', [PageController::class, 'contact'])->name('page.contact');

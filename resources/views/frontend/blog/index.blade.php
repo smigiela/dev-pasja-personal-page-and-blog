@@ -22,7 +22,7 @@
         <p class="intro">
             {{ $post->description }}...
         </p>
-        <a href="{{route('blog.post', $post)}}" class="continue-reading">Continue reading this post</a>
+        <a href="{{route('blog.post', $post)}}" class="continue-reading">Przeczytaj cały post</a>
     </div>
 @endforeach
 <div class="pages">

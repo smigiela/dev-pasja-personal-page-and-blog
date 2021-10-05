@@ -13,7 +13,7 @@
         </div>
         <div class="blog-post-header">
             <div class="blog-post-author">
-                <img src="{{ auth()->user()->profile_photo_url }}">
+                <img src="{{ $post->author->profile_photo_url }}">
                 by <span>{{ $post->author->name }}</span>
             </div>
             <div class="blog-post-date">

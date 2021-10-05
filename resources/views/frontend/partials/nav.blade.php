@@ -19,13 +19,13 @@
                         Blog
                     </a>
                 </li>
-                <li class="nav-item {{ (request()->is('o-mnie')) ? 'active' : '' }}">
-                    <a href="{{route('home')}}" class="nav-link">
+                <li class="nav-item {{ (request()->routeIs('page.aboutme')) ? 'active' : '' }}">
+                    <a href="{{route('page.aboutme')}}" class="nav-link">
                         O mnie
                     </a>
                 </li>
-                <li class="nav-item {{ (request()->is('kontakt')) ? 'active' : '' }}">
-                    <a href="{{route('home')}}" class="nav-link">
+                <li class="nav-item {{ (request()->routeIs('page.contact')) ? 'active' : '' }}">
+                    <a href="{{route('page.contact')}}" class="nav-link">
                         Kontakt
                     </a>
                 </li>
