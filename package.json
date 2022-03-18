@@ -21,6 +21,7 @@
         "tailwindcss": "^2.2.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-source-editing": "^30.0.0",
         "flatpickr": "^4.6.9"
     }
 }

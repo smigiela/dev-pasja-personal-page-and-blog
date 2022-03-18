@@ -96,6 +96,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->posts()->each(function($post) {
+            $post->category()->dissociate();
+            $post->save();
+        });
+
         $category->delete();
 
         return redirect()->route('categories.index');

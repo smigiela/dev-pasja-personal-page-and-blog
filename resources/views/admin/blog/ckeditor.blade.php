@@ -92,6 +92,8 @@
     }
     ClassicEditor
         .create( document.querySelector( '#ckeditor' ), {
+            // plugins: [ SourceEditing ],
+            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
             extraPlugins: [ SimpleUploadAdapterPlugin ],
         } )
         .then( editor => {

@@ -3,7 +3,7 @@
 
 @foreach($posts as $post)
     <div class="post">
-        <a href="blog-post.html" class="pic">
+        <a href="{{route('blog.post', $post)}}" class="pic">
             @if($post->getFirstMedia('post_cover_image'))
                 <div style="background-image:url({{$post->getFirstMediaUrl('post_cover_image') }});"></div>
             @else
@@ -17,7 +17,7 @@
         <div class="author">
             <img src="{{ $post->author->profile_photo_url }}" class="avatar" alt="author" />
             {{ $post->author->name }}, {{ \Carbon\Carbon::make($post->published_at)->format('d-m-Y H:m') }}
-            | Opublikowano w kategorii: <div class="badge badge-info">{{ $post->category->name }}</div>
+            | Opublikowano w kategorii: <div class="badge badge-info">{{ $post->category->name ?? '' }}</div>
         </div>
         <p class="intro">
             {{ $post->description }}...

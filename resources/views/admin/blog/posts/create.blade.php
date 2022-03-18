@@ -90,6 +90,18 @@
                                             <input type="file" name="image" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
                                                 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
                                         </div>
+                                        <div class="col-span-2 sm:col-span-2">
+                                            <x-jet-label for="video_url" class="block text-sm font-medium text-gray-700">
+                                                Link do materiału video <span class="text-xs">(*link pobrany z embeded)</span>
+                                            </x-jet-label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <x-jet-input type="text" name="video_url" id="video_url"
+                                                             value="{{old('video_url')}}"
+                                                             class="focus:ring-indigo-500 focus:border-indigo-500 flex-1
+                                                           block w-full rounded-none rounded-r-md sm:text-sm border-gray-300">
+                                                </x-jet-input>
+                                            </div>
+                                        </div>
                                     </div>
                                     <x-jet-validation-errors></x-jet-validation-errors>
                                 </div>

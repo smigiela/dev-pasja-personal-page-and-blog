@@ -19,7 +19,7 @@ class BlogController extends Controller
                         $query->select('id','slug','name');
                     }])
                 ->orderBy('published_at')
-                ->where('published_at', '>=', now())
+                ->where('published_at', '<=', now())
                 ->paginate(6);
 
         return view('frontend.blog.index', compact( 'posts'));
@@ -33,7 +33,7 @@ class BlogController extends Controller
     {
         $category->load(['posts' => function ($query) use (&$posts) {
             $posts = $query->orderBy('published_at')
-                ->where('published_at', '>=', now())
+                ->where('published_at', '<=', now())
                 ->select('id', 'slug', 'title', 'description', 'published_at', 'category_id', 'author_id')
                 ->paginate(6);
         }]);

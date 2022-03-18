@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostStoreRequest;
 use App\Models\Blog\Category;
 use App\Models\Blog\Post;
 use Illuminate\Http\Request;
@@ -37,12 +38,12 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param PostStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
-        $post = Post::create($request->all() + ['slug' => Str::slug($request->title)]);
+        $post = Post::create($request->validated());
 
         if ($request->hasFile('image')) {
             $post->addMediaFromRequest('image')->toMediaCollection('post_cover_image');
@@ -78,11 +79,13 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog\Post  $post
+     * @param PostStoreRequest $request
+     * @param \App\Models\Blog\Post $post
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist
+     * @throws \Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig
      */
-    public function update(Request $request, Post $post)
+    public function update(PostStoreRequest $request, Post $post)
     {
         $post->update($request->all());
 

@@ -48,7 +48,7 @@
                                     {{$post->title}}
                                 </div>
                                 <div class="post-min-read">
-                                    Opublikowane w kategorii: {{$post->category->name}}
+                                    Opublikowane w kategorii: {{$post->category->name ?? ''}}
                                     | {{ \Carbon\Carbon::make($post->published_at)->diffForHumans() }}
                                 </div>
                                 <p class="post-description">

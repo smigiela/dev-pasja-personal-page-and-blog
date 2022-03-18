@@ -26415,7 +26415,14 @@ body {
 
 @media (max-width: 767px) {
     .blog-sidebar-header .categories {
-        display: none
+        width: 100%;
+        margin-left: 0px;
+        margin-top: 10px;
+        letter-spacing: .5px;
+        color: #4d4d4d;
+        font-size: 10px;
+        font-weight: 500;
+        border-top: #0b0b0b solid 1px;
     }
 }
 

@@ -13,7 +13,7 @@ class Post extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
-    protected $fillable = ['title', 'slug', 'description', 'body', 'keywords', 'published_at', 'author_id', 'category_id'];
+    protected $fillable = ['title', 'slug', 'description', 'body', 'video_url', 'image', 'keywords', 'published_at', 'author_id', 'category_id'];
 
     public function getRouteKeyName()
     {

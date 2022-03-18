@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Kategorie
+            <div class="flex">
+                <div>Posty</div>
+                <div class="ml-6"><a href="{{route('posts.create')}}" class="px-3 py-2 bg-green-400 text-white rounded ">Dodaj</a></div>
+            </div>
         </h2>
     </x-slot>
 
@@ -21,16 +24,21 @@
                     @forelse($posts as $post)
                         <tr class="text-gray-700">
                             <td class="px-4 py-3 border">
-                                <div class="flex items-center text-sm">
-                                    {{$post->title}}
+                                <div class="flex items-center text-blue-700 capitalize font-semibold text-sm">
+                                    <a href="{{route('posts.edit', $post)}}">{{$post->title}}</a>
                                 </div>
                             </td>
-                            <td class="px-4 py-3 text-ms font-semibold border">{{$post->category->name}}</td>
+                            <td class="px-4 py-3 text-ms border">{{$post->category->name ?? ''}}</td>
                             <td class="px-4 py-3 text-xs border">
-                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> {{$post->description}} </span>
+                                {{$post->description ?? ''}}
                             </td>
                             <td class="px-4 py-3 text-xs border">
-                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"> {{$post->keywords ?? ''}} </span>
+                                <form action="{{route('posts.destroy', $post)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="bg-red-400 text-white text-sm px-2 py-1 rounded">Usuń</button>
+                                </form>
+
                             </td>
                         </tr>
                     @empty

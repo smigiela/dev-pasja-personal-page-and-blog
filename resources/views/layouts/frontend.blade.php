@@ -11,13 +11,43 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Facebook meta tags -->
-    <meta property="fb:app_id"        content="{{asset('public/dev-pasja-icon_512.png')}}" />
-    <meta property="og:url"           content="http://localhost:8000" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="{{ config('app.name') }}" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="{{asset('public/dev-pasja-icon_512.png')}}" />
+    <meta name="google-site-verification" content="uyME_q944OYOWyMCOobsUWto3ZerUUyrv4Zc_nvX8gI"/>
+
+    <!-- Open Graph meta tags -->
+    @if(Request::is('blog/kategoria/*'))
+        <meta property="fb:app_id" content="549736456255485">
+        <meta property="twitter:card" content="summary">
+        <meta property="twitter:site" content="@SmigielaDaniel">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="{{$category->name ?? ''}}">
+        <meta property="og:description" content="{{$category->description ?? ''}}">
+        <meta property="og:image" content="{{asset('public/dev-pasja-icon_512.png')}}">
+        <meta property="og:url" content="{{route('blog.category', $category->slug)}}">
+    @elseif(Request::is('blog/*'))
+        <meta property="fb:app_id" content="549736456255485">
+        <meta property="twitter:card" content="summary">
+        <meta property="twitter:site" content="@SmigielaDaniel">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="{{$post->title ?? ''}}">
+        <meta property="og:description" content="{{$post->description ?? ''}}">
+        @if($post->getFirstMedia('post_cover_image'))
+            <meta property="og:image" content="{{$post->getFirstMediaUrl('post_cover_image')}}">
+        @else
+            <meta property="og:image" content="https://via.placeholder.com/200x120)">
+        @endif
+        <meta property="og:image" content="{{$post->getFirstMediaUrl('post_cover_image')}}">
+        <meta property="og:url" content="{{route('blog.post', $post->slug)}}">
+
+    @else
+        <meta property="fb:app_id" content="549736456255485">
+        <meta property="twitter:card" content="summary">
+        <meta property="twitter:site" content="@SmigielaDaniel">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="{{ config('app.name', 'Dev Pasja') }} - Blog dla programistów">
+        <meta property="og:description" content="Z miłosci do programowania - blog z poradami ze świata IT.">
+        <meta property="og:image" content="{{asset('public/dev-pasja-icon_512.png')}}">
+        <meta property="og:url" content="https://dev-pasja.pl">
+    @endif
 
     <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
     <link rel="shortcut icon" href="{{asset('public/dev-pasja-icon_512.png')}}">
@@ -32,6 +62,26 @@
             integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
             crossorigin="anonymous"></script>
     <script src="{{asset('vendor/frontend/dist/theme.min.js')}}"></script>
+    @yield('scripts')
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0YLEYEB3C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-F0YLEYEB3C');
+    </script>
+
+    {{--Google AdSense api--}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3636102536446258"
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
 
@@ -54,8 +104,10 @@
         });
     });
 </script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v12.0" nonce="FYouOzDW"></script>
-
+{{--Facebook api--}}
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v12.0"
+        nonce="FYouOzDW">
+</script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
     // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -65,6 +117,8 @@
     // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     // ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
+
+
 </body>
 
 </html>
